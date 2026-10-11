@@ -145,7 +145,7 @@ const CONFIG = {
   brandColor: "#e10600",                           // لون هوية العميل
   accentColor: "#4cc9ff",                          // لون ثانوي
   reviewUrl: "https://maps.app.goo.gl/7ZKLXbHbB8mUdN846?g_st=ic",   // رابط التقييم من Google Business Profile
-  instapayUrl: "https://ipn.eg/S/mohamed.ahmed424161/instapay/3hr1LX", // رابط الدفع بالانستاباي
+  instapayUrl: "https://ipn.eg/S/salwamahmoudabdelazez/instapay/5yb0Fk", // رابط الدفع بالانستاباي
   phone: "+201206500030",                          // رقم الاتصال (بصيغة دولية)
   phoneLabel: "01206 500 030",
   walletOwner: "م*** ح***",
@@ -210,7 +210,7 @@ let html = "";
 if (CONFIG.reviewUrl)
   html += tile("a", `href="${CONFIG.reviewUrl}"`, "star", "قيّم تجربتك على جوجل", "رأيك بياخد دقيقة وبيفرق معانا", "main");
 if (CONFIG.instapayUrl)
-  html += tile("a", `href="${CONFIG.instapayUrl}"`, "card", "ادفع عبر إنستاباي", "هيفتح تطبيق إنستاباي مباشرة", "blue");
+  html += tile("a", `href="${CONFIG.instapayUrl}" target="_blank" rel="noopener noreferrer"`, "card", "حوّل عبر إنستاباي", "اضغط هنا للتحويل مباشرة عبر إنستاباي", "blue");
 if (CONFIG.wallets.length)
   html += tile("button", `type="button" id="wBtn" aria-expanded="false" aria-controls="wPanel"`, "wallet", "المحافظ الإلكترونية", CONFIG.wallets.map(w => w.label).join("، "), "chrome") +
     `<div class="panel" id="wPanel" hidden>${CONFIG.walletOwner ? `<p class="owner">اسم الحساب: <bdi>${CONFIG.walletOwner}</bdi></p>` : ""}${
