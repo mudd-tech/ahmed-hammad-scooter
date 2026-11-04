@@ -93,6 +93,12 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--ink);outline-offset
 .theme svg{width:22px;height:22px}
 .theme:focus-visible{outline-color:#fff}
 html[data-theme="light"] .blue .t b,html[data-theme="light"] .call .t b{text-shadow:none}
+.cta{position:relative;z-index:1;padding:0 20px;margin-top:30px}
+.cta:empty{display:none}
+.cta .lead{text-align:center;color:var(--muted);font-size:.85rem;margin-bottom:10px}
+.tile.tapio{color:#fff;border-radius:18px;border-color:rgba(255,255,255,.25);background:linear-gradient(135deg,#1fb85a 0%,#128c4a 55%,#0b5d31 100%);box-shadow:0 0 0 3px rgba(37,211,102,.14),0 10px 28px rgba(18,140,74,.4),inset 0 1px 0 rgba(255,255,255,.35)}
+.tapio .ic{border-radius:50%;background:#fff;color:#128c4a}
+.tapio .t span,.tapio .chev{color:rgba(255,255,255,.9)}
 footer{display:none}
 </style>
 </head>
@@ -110,6 +116,7 @@ footer{display:none}
   </div>
   <div class="list" id="list"></div>
   <div class="soc" id="soc"></div>
+  <div class="cta" id="cta"></div>
   <footer id="foot"></footer>
 </div>
 
@@ -133,6 +140,7 @@ const CONFIG = {
   instapayUrl: "https://ipn.eg/S/mohamed.ahmed424161/instapay/3hr1LX", // رابط الدفع بالانستاباي
   phone: "+201206500030",                          // رقم الاتصال (بصيغة دولية)
   phoneLabel: "01206 500 030",
+  tapioWhatsapp: "201284424161",                   // رقم واتساب Tapio لطلب ستاند (بصيغة دولية بدون +)
   walletOwner: "ا*** ح***",
   wallets: [
     { label: "فودافون كاش", value: "01061648384" }
@@ -209,6 +217,12 @@ list.innerHTML = html;
 
 $("soc").innerHTML = CONFIG.socials.map(s =>
   `<a href="${s.url}" aria-label="${s.label}">${ICON[s.type] || ICON.link}</a>`).join("");
+
+if (CONFIG.tapioWhatsapp) {
+  const msg = encodeURIComponent("السلام عليكم، شفت ستاند Tapio عند " + CONFIG.name + " وعايز أطلب واحد لمحلي");
+  $("cta").innerHTML = `<p class="lead">عجبك الستاند ده؟</p>` +
+    tile("a", `href="https://wa.me/${CONFIG.tapioWhatsapp}?text=${msg}" target="_blank" rel="noopener"`, "whatsapp", "اطلب ستاند Tapio لمحلك", "كلمنا على واتساب ونجهزلك واحد زيه", "tapio");
+}
 
 function legacyCopy(text) {
   return new Promise((ok, fail) => {
